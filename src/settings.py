@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'buyers',
     'sales',
     'orders',
-    'cars',
+    'cars.apps.CarsConfig',
     'blog.apps.BlogConfig',
 
 ]

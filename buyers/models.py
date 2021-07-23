@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class Buyer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    from_singnal = models.BooleanField(default=False)
+    from_singnal = models.BooleanField(default=True)
 
     def __str__(self):
         return self.user

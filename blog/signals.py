@@ -2,6 +2,7 @@ from django.contrib.auth.signals import user_logged_in, user_logged_out, user_lo
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import pre_init, pre_delete, pre_save, post_init, post_delete, post_save
+from django.core.signals import request_started, request_finished, got_request_exception
 
 
 @receiver(user_logged_in, sender=User)
@@ -110,3 +111,32 @@ def at_end_delete(sender, instance, using, **kwargs):
     print('using:', using)
 
     # post_delete.connect(at_end_delete, sender=User)  not need if @@receiver(user_logged_in, sender=User) is written above
+
+
+@receiver(request_started)
+def at_start_request(sender, environ, **kwargs):
+    print('request_start signal')
+    print('sender:', sender)
+    print('environ:', environ)
+    print(f'Kwargs:{kwargs}')
+
+    # request_started.connect(at_start_request)  not need if @@receiver(user_logged_in, sender=User) is written above
+
+
+@receiver(request_finished)
+def at_end_request(sender, **kwargs):
+    print('request_end signal')
+    print('sender:', sender)
+    print(f'Kwargs:{kwargs}')
+
+    # request_finished.connect(at_end_request)  not need if @@receiver(user_logged_in, sender=User) is written above
+
+
+@receiver(got_request_exception)
+def at_exception_request(sender, request, **kwargs):
+    print('request_end signal')
+    print('sender:', sender)
+    print('request :', request)
+    print(f'Kwargs:{kwargs}')
+
+    # got_request_exception.connect(at_exception_request)  not need if @@receiver(user_logged_in, sender=User) is written above
