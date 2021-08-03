@@ -1,5 +1,5 @@
 from django.db import models
-from buyers.models import Buyer
+from buyers.models import Buyer, Test
 import uuid
 
 # Create your models here.
@@ -24,3 +24,11 @@ class Car(models.Model):
 
         return super().save(*args, **kwargs)
     # object override end
+
+
+class Car_test(models.Model):
+
+    name = models.ForeignKey(Test, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name

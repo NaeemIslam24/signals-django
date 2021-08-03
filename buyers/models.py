@@ -10,3 +10,11 @@ class Buyer(models.Model):
 
     def __str__(self):
         return self.user
+
+
+class Test(models.Model):
+    name = models.CharField(max_length=10, blank=True)
+    from_singnal = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
